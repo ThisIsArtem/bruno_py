@@ -3,9 +3,7 @@ import json
 
 
 def is_file_exist():
-    if os.path.isfile('users_data.json'):
-        pass
-    else:
+    if not os.path.isfile('users_data.json'):
         users_data_dict = {'admin': 'adminpass01'}
         with open('users_data.json', 'w') as f:
             json.dump(users_data_dict, f)
@@ -15,7 +13,6 @@ def is_correct_password(test_password):
     is_wrong_pass = True
     while is_wrong_pass:
         if len(test_password) > 8 and test_password.lower() != test_password and test_password.upper() != test_password:
-            # is_wrong_pass = False
             print("Password saved successfully!")
             return True
         print("You entered a bad password. Try again.")
@@ -54,7 +51,7 @@ while True:
         login = input('Come up with a username. Remember that the login must be unique:')
         password = input(
             'Come up with a password. It must consist of more than 8 characters and contain uppercase and lowercase '
-            'letters:') 
+            'letters:')
         create_account(login, password)
     else:
         print("I didn't understand you, try again")
